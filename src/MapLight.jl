@@ -6,7 +6,11 @@ using HttpCommon
 using Requests
 
 
-export bill_positions
+export bill_positions,
+	   bill_search,
+	   organization_positions,
+	   organization_search
+
 
 include("error.jl")
 include("endpoint.jl")
