@@ -49,12 +49,12 @@ organization_positions(jurisdiction, org_id; auth = authenticate(), options...) 
 
 # -------
 
-function organization_search(auth::Auth, search_str, exact = 0; options...)
+function organization_search(auth::Auth, search_str, exact = false; options...)
 	maplight_get(auth, "/services_open_api/map.organization_search_v1.json", {
 		"search" => search_str,
-		"exact" => exact }; options...)
+		"exact" => int(exact) }; options...)
 end
 
-organization_search(auth::String, search_str, exact = 0; options...) = organization_search(authenticate(auth), search_str, exact; options...)
+organization_search(auth::String, search_str, exact = false; options...) = organization_search(authenticate(auth), search_str, exact; options...)
 
-organization_search(search_str, exact = 0; auth = authenticate(), options...) = organization_search(auth, search_str, exact; options...)
+organization_search(search_str, exact = false; auth = authenticate(), options...) = organization_search(auth, search_str, exact; options...)
