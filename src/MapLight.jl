@@ -1,6 +1,8 @@
 
 module MapLight
 
+import Base.show
+
 using JSON
 using HttpCommon
 using Requests

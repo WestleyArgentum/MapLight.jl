@@ -8,7 +8,7 @@ immutable APIKeyAuth <: Auth
 end
 
 function show(io::IO, a::APIKeyAuth)
-    key_str = a.key[1:3] * repeat("*", length(a.key) - 3)
+    key_str =  repeat("*", length(a.key) - 3) * a.key[(end - 2):end]
     print(io, "MapLight API Key ($key_str)")
 end
 
@@ -21,7 +21,7 @@ end
 immutable AnonymousAuth <: Auth
 end
 
-function show(io::IO, a::APIKeyAuth)
+function show(io::IO, a::AnonymousAuth)
     print(io, "Anonymous MapLight API Auth")
 end
 
