@@ -34,3 +34,18 @@ end
 bill_search(auth::String, jurisdiction, search_str; options...) = bill_search(authenticate(auth), jurisdiction, search_str; options...)
 
 bill_search(jurisdiction, search_str; auth = authenticate(), options...) = bill_search(auth, jurisdiction, search_str; options...)
+
+# -------
+
+function organization_positions(auth::Auth, jurisdiction, org_id; options...)
+	maplight_get(auth, "/services_open_api/map.organization_positions_v1.json", {
+		"jurisdiction" => jurisdiction,
+		"organization_id" => org_id }; options...)
+end
+
+organization_positions(auth::String, jurisdiction, org_id; options...) = organization_positions(authenticate(auth), jurisdiction, org_id; options...)
+
+organization_positions(jurisdiction, org_id; auth = authenticate(), options...) = organization_positions(auth, jurisdiction, org_id; options...)
+
+# -------
+
