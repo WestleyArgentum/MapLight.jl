@@ -24,3 +24,55 @@ julia> organization_search(my_auth, "Digital Media Association")
 julia> organization_positions(my_auth, "us", 25404)
 ["positions"=>{["number"=>"275","measure"=>"H.R. 275 (110<sup>th</sup>)","topic"=>"Global Online Freedom Act of 2007","last_update"=>"2011-08-29T20:44:13Z","disposition"=>"oppose","catcode"=>"C5140","prefix"=>"H","citation"=>" (n.d.). <a href=\"\"><cite>RE: H.R. 275, the “Global Online Freedom Act of 2007”</cite></a>. Retrieved n.d., from .","url"=>"http://maplight.org/us-congress/bill/110-hr-275/236522","session"=>"110","jurisdiction"=>"US"],["number"=>"2060","measure"=>"H.R. 2060 (110<sup>th</sup>)","topic"=>"Internet Radio Equality Act","last_update"=>"2011-08-29T20:28:47Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"H","citation"=>" (n.d.). <a href=\"\"><cite>Congressmen Introduce Bill to Save Internet Radio</cite></a>. Retrieved n.d., from .","url"=>"http://maplight.org/us-congress/bill/110-hr-2060/291155","session"=>"110","jurisdiction"=>"US"],["number"=>"4279","measure"=>"H.R. 4279 (110<sup>th</sup>)","topic"=>"Prioritizing Resources and Organization for Intellectual Property Act of 2008","last_update"=>"2011-08-29T16:14:29Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"H","citation"=>" (n.d.). <a href=\"\"><cite>Statement of Conyers</cite></a>. Retrieved n.d., from .","url"=>"http://maplight.org/us-congress/bill/110-hr-4279/377624","session"=>"110","jurisdiction"=>"US"],["number"=>"575","measure"=>"S. 575 (112<sup>th</sup>)","topic"=>"Debit Interchange Fee Study Act of 2011","last_update"=>"2012-12-20T21:51:15Z","disposition"=>"oppose","catcode"=>"C5140","prefix"=>"S","citation"=>"Undersigned Organizations (2011, June 6). <a href=\"https://www.wewear.org/assets/1/7/060611swipefee.pdf\"><cite>Dear Senator:</cite></a>. Retrieved August 6, 2012, from American Apparel and Footwear Association.","url"=>"http://maplight.org/us-congress/bill/112-s-575/900958","session"=>"112","jurisdiction"=>"US"],["number"=>"2471","measure"=>"H.R. 2471 (112<sup>th</sup>)","topic"=>"Electronic Communications Privacy Act Amendments Act of 2012","last_update"=>"2012-12-21T15:36:25Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"H","citation"=>"Gregory Alan Barnes, Director of Government Affairs, Digital Media Association (2011, October 13). <a href=\"http://www.digmedia.org/component/content/article/40/300-dima-applauds-members-of-the-house-judiciary-committee-for-streamlining-consent-requirements-under-the-video-privacy-protection-act\"><cite>DiMA Applauds Members of the House Judiciary Committee for Streamlining Consent Requirements under the Video Privacy Protection Act</cite></a>. Retrieved December 5, 2011, from Press Releases.","url"=>"http://maplight.org/us-congress/bill/112-hr-2471/1024048","session"=>"112","jurisdiction"=>"US"],["number"=>"6480","measure"=>"H.R. 6480 (112<sup>th</sup>)","topic"=>"Internet Radio Fairness Act of 2012","last_update"=>"2012-12-21T01:16:16Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"H","citation"=>"IRFC (n.d.). <a href=\"http://internetradiofairness.com/legislation/\"><cite>The IRFA: Good for Consumers, Artists and the Recording Industry</cite></a>. Retrieved November 20, 2012, from IRFC.","url"=>"http://maplight.org/us-congress/bill/112-hr-6480/1102695","session"=>"112","jurisdiction"=>"US"],["number"=>"3609","measure"=>"S. 3609 (112<sup>th</sup>)","topic"=>"Internet Radio Fairness Act of 2012","last_update"=>"2012-12-21T01:18:07Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"S","citation"=>"IRFC (2012, October 25). Internet Radio Fairness Coalition Launches to Help Accelerate Growth and Innovation in Internet Radio To Benefit Artists, Consumers and the Recording Industry. <cite>MarketWatch: The Wall Street Journal</cite>. Retrieved November 1, 2012, from <a href=\"http://www.marketwatch.com/story/internet-radio-fairness-coalition-launches-to-help-accelerate-growth-and-innovation-in-internet-radio-to-benefit-artists-consumers-and-the-recording-industry-2012-10-25\">http://www.marketwatch.com/story/internet-radio-fairness-coalition-launches-to-help-accelerate-growth-and-innovation-in-internet-radio-to-benefit-artists-consumers-and-the-recording-industry-2012-10-25</a>.","url"=>"http://maplight.org/us-congress/bill/112-s-3609/1102959","session"=>"112","jurisdiction"=>"US"],["number"=>"3309","measure"=>"H.R. 3309 (113<sup>th</sup>)","topic"=>"Innovation Act","last_update"=>"2014-01-25T20:41:07Z","disposition"=>"support","catcode"=>"C5140","prefix"=>"H","citation"=>"undersigned organizations (n.d.). <a href=\"http://judiciary.house.gov/news/2013/12032013_PATENT/FINAL%20Growing%20Support%20for%20HR%20%203309.pdf\"><cite>Growing Support for H.R. 3309, &quot;The Innovation Act&quot;</cite></a>. Retrieved December 13, 2013, from House Committee on the Judiciary.","url"=>"http://maplight.org/us-congress/bill/113-hr-3309/2602316","session"=>"113","jurisdiction"=>"US"]}]
 ```
+
+
+## API
+
+### Bill Search
+
+Returns an array of bills that match a particular string.
+
+```
+bill_search(auth::Auth, jurisdiction, search_str)
+
+bill_search(auth::String, jurisdiction, search_str)
+
+bill_search(jurisdiction, search_str; auth = authenticate())
+```
+
+
+### Bill Positions
+
+Returns an array of organization’s positions on a single bill.
+
+```
+bill_positions(auth::Auth, jurisdiction, session, prefix, number)
+
+bill_positions(auth::String, jurisdiction, session, prefix, number)
+
+bill_positions(jurisdiction, session, prefix, number; auth = authenticate())
+```
+
+### Organization Search
+
+Returns an array of organization IDs that match a particular string.
+
+```
+organization_search(auth::Auth, search_str, exact = false)
+
+organization_search(auth::String, search_str, exact = false)
+
+organization_search(search_str, exact = false; auth = authenticate())
+```
+
+### Organization Positions
+
+Returns an array an organization’s positions on bills.
+
+```
+organization_positions(auth::Auth, jurisdiction, org_id)
+
+organization_positions(auth::String, jurisdiction, org_id)
+
+organization_positions(jurisdiction, org_id; auth = authenticate())
+```
