@@ -32,7 +32,7 @@ julia> organization_positions(my_auth, "us", 25404)
 
 Returns an array of bills that match a particular string.
 
-```
+```julia
 bill_search(auth::Auth, jurisdiction, search_str)
 
 bill_search(auth::String, jurisdiction, search_str)
@@ -49,7 +49,7 @@ bill_search(jurisdiction, search_str; auth = authenticate())
 
 Returns an array of organization’s positions on a single bill.
 
-```
+```julia
 bill_positions(auth::Auth, jurisdiction, session, prefix, number)
 
 bill_positions(auth::String, jurisdiction, session, prefix, number)
@@ -82,7 +82,7 @@ bill_positions(jurisdiction, session, prefix, number; auth = authenticate())
 
 Returns an array of organization IDs that match a particular string.
 
-```
+```julia
 organization_search(auth::Auth, search_str, exact = false)
 
 organization_search(auth::String, search_str, exact = false)
@@ -99,7 +99,7 @@ organization_search(search_str, exact = false; auth = authenticate())
 
 Returns an array an organization’s positions on bills.
 
-```
+```julia
 organization_positions(auth::Auth, jurisdiction, org_id)
 
 organization_positions(auth::String, jurisdiction, org_id)
