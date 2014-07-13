@@ -40,6 +40,10 @@ bill_search(auth::String, jurisdiction, search_str)
 bill_search(jurisdiction, search_str; auth = authenticate())
 ```
 
+- `auth`: An instance of `Auth` or an api key in the form of a string
+- `jurisdiction`: Either `"us"` for federal or `"ca"` for california
+- `search_str`: The string to search for (the full or partial name of a bill, for instance)
+
 
 ### Bill Positions
 
@@ -53,6 +57,27 @@ bill_positions(auth::String, jurisdiction, session, prefix, number)
 bill_positions(jurisdiction, session, prefix, number; auth = authenticate())
 ```
 
+- `auth`: An instance of `Auth` or an api key in the form of a string
+- `jurisdiction`: Either `"us"` for federal or `"ca"` for California
+- `session`: An integer
+	* `109`: The 109th session of the United States Congress (2005-2006).
+	* `110`: The 110th session of the United States Congress (2007-2008).
+	* `111`: The 111th session of the United States Congress (2009-2010).
+	* `112`: The 112th session of the United States Congress (2011-2012).
+	* `2009`: The 2009-2010 session of the California Assembly.
+	* `2011`: The 2011-2012 session of the California Assembly.
+- `prefix`: A string
+	* `"h"`: House Bill (i.e. H.R.)
+	* `"hr"`: House Resolution (i.e. H.Res.)
+	* `"hj"`: House Joint Resolution (i.e. H.J.Res.)
+	* `"hc"`: House Concurrent Resolution (i.e. H.Con.Res.)
+	* `"s"`: Senate Bill (i.e. S.)
+	* `"sr"`: Senate Resolution (i.e. S.Res.)
+	* `"sj"`: Senate Joint Resolution (i.e. S.J.Res.)
+	* `"sc"`: Senate Concurrent Resolution (i.e. S.Con.Res.)
+- `number`: The bill number (without the prefix)
+
+
 ### Organization Search
 
 Returns an array of organization IDs that match a particular string.
@@ -65,6 +90,11 @@ organization_search(auth::String, search_str, exact = false)
 organization_search(search_str, exact = false; auth = authenticate())
 ```
 
+- `auth`: An instance of `Auth` or an api key in the form of a string
+- `search_str`: The string to search for (the full or partial name of an organization, for instance)
+- `exact`: `true` or `false` - whether to search for an exact or partial string match
+
+
 ### Organization Positions
 
 Returns an array an organization’s positions on bills.
@@ -76,3 +106,7 @@ organization_positions(auth::String, jurisdiction, org_id)
 
 organization_positions(jurisdiction, org_id; auth = authenticate())
 ```
+
+- `auth`: An instance of `Auth` or an api key in the form of a string
+- `jurisdiction`: Either `"us"` for federal or `"ca"` for california
+- `org_id`: MAPLight.org’s internal identifier for organizations (output from the organization_search method)
