@@ -11,7 +11,8 @@ using Requests
 export bill_positions,
 	   bill_search,
 	   organization_positions,
-	   organization_search
+	   organization_search,
+	   authenticate
 
 
 include("error.jl")
