@@ -10,6 +10,7 @@ using Requests
 
 export bill_positions,
 	   bill_search,
+	   bill_list,
 	   organization_positions,
 	   organization_search,
 	   authenticate

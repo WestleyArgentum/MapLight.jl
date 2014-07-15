@@ -37,6 +37,23 @@ bill_search(jurisdiction, search_str; auth = authenticate(), options...) = bill_
 
 # -------
 
+function bill_list(auth::Auth, jurisdiction, session; include_organizations = true, has_organizations = true, options...)
+	maplight_get(auth, "/services_open_api/map.bill_list_v1.json", {
+			"jurisdiction" => jurisdiction,
+			"session" => session,
+			"include_organizations" => include_organizations,
+			"has_organizations" => has_organizations
+			}; options...)
+end
+
+bill_list(auth::String, jurisdiction, session; include_organizations = true, has_organizations = true, options...) =
+	bill_list(authenticate(auth), jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
+
+bill_list(jurisdiction, session; auth = authenticate(), include_organizations = true, has_organizations = true, options...) = 
+	bill_list(auth, jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
+
+# -------
+
 function organization_positions(auth::Auth, jurisdiction, org_id; options...)
 	maplight_get(auth, "/services_open_api/map.organization_positions_v1.json", {
 		"jurisdiction" => jurisdiction,
