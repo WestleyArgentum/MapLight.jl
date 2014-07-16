@@ -78,6 +78,31 @@ bill_positions(jurisdiction, session, prefix, number; auth = authenticate())
 - `number`: The bill number (without the prefix)
 
 
+## Bill List
+
+Returns an array of organizations’ positions on all bills in a session. This response is cached and updated nightly.
+
+```julia
+bill_list(auth::Auth, jurisdiction, session; include_organizations = true, has_organizations = true)
+
+bill_list(auth::String, jurisdiction, session; include_organizations = true, has_organizations = true)
+
+bill_list(jurisdiction, session; auth = authenticate(), include_organizations = true, has_organizations = true)
+```
+
+- `auth`: An instance of `Auth` or an api key in the form of a string
+- `jurisdiction`: Either `"us"` for federal or `"ca"` for California
+- `session`: An integer
+	* `109`: The 109th session of the United States Congress (2005-2006).
+	* `110`: The 110th session of the United States Congress (2007-2008).
+	* `111`: The 111th session of the United States Congress (2009-2010).
+	* `112`: The 112th session of the United States Congress (2011-2012).
+	* `2009`: The 2009-2010 session of the California Assembly.
+	* `2011`: The 2011-2012 session of the California Assembly.
+- `include_organizations`: `true` or `false` - whether to include the positions of organizations that took a stance
+- `has_organizations`: `true` or `false` - whether to include in the response bills for which support and opposition are unknown
+
+
 ### Organization Search
 
 Returns an array of organization IDs that match a particular string.
