@@ -1,24 +1,24 @@
 
 function maplight_get(auth::Auth, path, args; query = Dict(), options...)
-	authentiate_query(query, auth)
-	merge!(query, args)
+    authentiate_query(query, auth)
+    merge!(query, args)
 
-	r = get(URI(MAPLIGHT_API; path = path); query = query, options...)
+    r = get(URI(MAPLIGHT_API; path = path); query = query, options...)
 
-	handle_error(r)
+    handle_error(r)
 
-	JSON.parse(r.data)
+    JSON.parse(r.data)
 end
 
 # -------
 
 function bill_positions(auth::Auth, jurisdiction, session, prefix, number; options...)
-	maplight_get(auth, "/services_open_api/map.bill_positions_v1.json", {
-		"jurisdiction" => jurisdiction,
-		"session" => session,
-		"prefix" => prefix,
-		"number" => number
-		}; options...)
+    maplight_get(auth, "/services_open_api/map.bill_positions_v1.json", {
+        "jurisdiction" => jurisdiction,
+        "session" => session,
+        "prefix" => prefix,
+        "number" => number
+        }; options...)
 end
 
 bill_positions(auth::String, jurisdiction, session, prefix, number; options...) = bill_positions(authenticate(auth), jurisdiction, session, prefix, number; options...)
@@ -28,7 +28,7 @@ bill_positions(jurisdiction, session, prefix, number; auth = authenticate(), opt
 # -------
 
 function bill_search(auth::Auth, jurisdiction, search_str; options...)
-	maplight_get(auth, "/services_open_api/map.bill_search_v1.json", { "jurisdiction" => jurisdiction, "search" => search_str }; options...)
+    maplight_get(auth, "/services_open_api/map.bill_search_v1.json", { "jurisdiction" => jurisdiction, "search" => search_str }; options...)
 end
 
 bill_search(auth::String, jurisdiction, search_str; options...) = bill_search(authenticate(auth), jurisdiction, search_str; options...)
@@ -38,26 +38,26 @@ bill_search(jurisdiction, search_str; auth = authenticate(), options...) = bill_
 # -------
 
 function bill_list(auth::Auth, jurisdiction, session; include_organizations = true, has_organizations = true, options...)
-	maplight_get(auth, "/services_open_api/map.bill_list_v1.json", {
-			"jurisdiction" => jurisdiction,
-			"session" => session,
-			"include_organizations" => include_organizations,
-			"has_organizations" => has_organizations
-			}; options...)
+    maplight_get(auth, "/services_open_api/map.bill_list_v1.json", {
+            "jurisdiction" => jurisdiction,
+            "session" => session,
+            "include_organizations" => include_organizations,
+            "has_organizations" => has_organizations
+            }; options...)
 end
 
 bill_list(auth::String, jurisdiction, session; include_organizations = true, has_organizations = true, options...) =
-	bill_list(authenticate(auth), jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
+    bill_list(authenticate(auth), jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
 
 bill_list(jurisdiction, session; auth = authenticate(), include_organizations = true, has_organizations = true, options...) = 
-	bill_list(auth, jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
+    bill_list(auth, jurisdiction, session; include_organizations = include_organizations, has_organizations = has_organizations, options...)
 
 # -------
 
 function organization_positions(auth::Auth, jurisdiction, org_id; options...)
-	maplight_get(auth, "/services_open_api/map.organization_positions_v1.json", {
-		"jurisdiction" => jurisdiction,
-		"organization_id" => org_id }; options...)
+    maplight_get(auth, "/services_open_api/map.organization_positions_v1.json", {
+        "jurisdiction" => jurisdiction,
+        "organization_id" => org_id }; options...)
 end
 
 organization_positions(auth::String, jurisdiction, org_id; options...) = organization_positions(authenticate(auth), jurisdiction, org_id; options...)
@@ -67,9 +67,9 @@ organization_positions(jurisdiction, org_id; auth = authenticate(), options...) 
 # -------
 
 function organization_search(auth::Auth, search_str, exact = false; options...)
-	maplight_get(auth, "/services_open_api/map.organization_search_v1.json", {
-		"search" => search_str,
-		"exact" => int(exact) }; options...)
+    maplight_get(auth, "/services_open_api/map.organization_search_v1.json", {
+        "search" => search_str,
+        "exact" => int(exact) }; options...)
 end
 
 organization_search(auth::String, search_str, exact = false; options...) = organization_search(authenticate(auth), search_str, exact; options...)

@@ -4,7 +4,7 @@ abstract Auth
 # -------
 
 immutable APIKeyAuth <: Auth
-	key
+    key
 end
 
 function show(io::IO, a::APIKeyAuth)
@@ -13,7 +13,7 @@ function show(io::IO, a::APIKeyAuth)
 end
 
 function authentiate_query(query_params, a::APIKeyAuth)
-	query_params["apikey"] = a.key
+    query_params["apikey"] = a.key
 end
 
 # -------
@@ -26,15 +26,15 @@ function show(io::IO, a::AnonymousAuth)
 end
 
 function authentiate_query(query_params, a::AnonymousAuth)
-	query_params  # nothing to be done
+    query_params  # nothing to be done
 end
 
 # -------
 
 function authenticate(key::String)
-	APIKeyAuth(key)
+    APIKeyAuth(key)
 end
 
 function authenticate()
-	AnonymousAuth()
+    AnonymousAuth()
 end
